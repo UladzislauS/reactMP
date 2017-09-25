@@ -27,13 +27,16 @@
   },
   "dependencies": {
     "express": "^4.15.4",
+    "history": "^4.7.2",
     "jest": "^21.0.2",
     "morgan": "^1.8.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-forms": "^0.11.1"
+    "redux-forms": "^0.11.1",
+    "styled-components": "^2.1.2"
   }
 }
