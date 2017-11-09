@@ -5,19 +5,18 @@ import {
     TileTitle,
     TileFilmInfo,
     TileFilmYear,
-    TileFilmGroup,
     TileFilmDescription
 } from './FilmTile.styles';
+import { IMAGE_URL } from '../../../../../vars';
 
 const FilmTile = ({film}) =>
-    <Tile to={`/film/${film.title}`}>
-        <TileImage url={film.image}/>
+    <Tile to={`/film/${film.id}`}>
+        <TileImage url={film.poster_path ? IMAGE_URL(film.poster_path) : ''}/>
         <TileFilmDescription>
             <TileFilmInfo>
                 <TileTitle>{film.title}</TileTitle>
-                <TileFilmYear>{film.year}</TileFilmYear>
+                <TileFilmYear>{film.release_date.slice(0, -6)}</TileFilmYear>
             </TileFilmInfo>
-            <TileFilmGroup>{film.category}</TileFilmGroup>
         </TileFilmDescription>
     </Tile>;
 

@@ -3,23 +3,20 @@ import SearchResultMessage from '../SearchResultMessage/SearchResultMessage';
 import StatusBar from '../../../../common/styles/StatusBar.styles';
 import RadioValues from '../../../../common/components/RadioValues/RadioValues';
 
-const sortByLabel = 'Sort by';
-const sortByValues = [{
-    label: 'release date',
-    value: 'date'
-}, {
-    label: 'rating',
-    value: 'rating'
-}];
-
-const SearchStatusBar = () =>
+const SearchStatusBar = ({
+    totalResults,
+    sortValues,
+    activeSortValue,
+    onSortValueChange
+}) =>
     <StatusBar>
-        <SearchResultMessage result={7}/>
+        <SearchResultMessage result={totalResults}/>
         <RadioValues
-            label={sortByLabel}
-            values={sortByValues}
+            label='Search by'
+            values={sortValues}
             buttonType='link'
-            active='date'/>
+            active={activeSortValue}
+            onClick={(value) => onSortValueChange(sortValues, value)}/>
     </StatusBar>;
 
 export default SearchStatusBar;

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+function imageUrl(image) {
+    return `url(${(image)})`;
+}
+
 const FilmPreview = styled.div`
   display: flex;
   margin: 30px 0;
@@ -11,7 +15,7 @@ const FilmPoster = styled.div`
     height: 420px;
     flex-grow: 0;
     flex-shrink: 0;
-    background-image: url(http://netflixroulette.net/api/posters/880640.jpg);
+    background-image: ${(props) => imageUrl(props.image)};
     background-size: cover;
     margin-right: 40px;
 `;

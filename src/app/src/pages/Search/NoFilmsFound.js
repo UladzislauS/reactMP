@@ -6,9 +6,9 @@ import {
 } from '../../common/styles/PageContainer.styles';
 import StatusBar from '../../common/styles/StatusBar.styles';
 
-const NoFilmsFound = () =>
+const NoFilmsFound = ({performSearch}) =>
     <PageContainer>
-        <SearchHeader/>
+        <SearchHeader performSearch={performSearch}/>
         <StatusBar/>
         <NoFilmsFoundMessage/>
     </PageContainer>;

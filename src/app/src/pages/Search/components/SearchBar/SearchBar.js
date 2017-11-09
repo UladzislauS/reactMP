@@ -1,60 +1,52 @@
-import React, {Component} from 'react';
-import { createBrowserHistory } from 'history';
+import React, { Component } from 'react';
+import { Route } from 'react-router';
 import SearchInput from '../../../../common/components/SearchInput/SearchInput';
-import RadioValues from '../../../../common/components/RadioValues/RadioValues';
 import {
-    SearchBarContainer,
-    SearchBarControls,
-    SearchBarLabel
+SearchBarContainer,
+SearchBarControls,
+SearchBarLabel
 } from './SearchBar.styles';
-import Button from "../../../../common/components/Button/Button";
-import {Route} from "react-router";
-
-const searchByLabel = 'SEARCH BY';
-const searchByValues = [{
-    label: 'TITLE',
-    value: 'title'
-}, {
-    label: 'DIRECTOR',
-    value: 'director'
-}];
+import Button from '../../../../common/components/Button/Button';
 
 class SearchBar extends Component {
-    constructor() {
+    constructor(props) {
         super();
-        this.state = {searchValue: ''};
+        this.state = {
+            searchValue: props.searchValue || ''
+        };
     }
-
 
     handleChange(event) {
-        this.setState({searchValue: event.target.value});
+        this.setState({
+            searchValue: event.target.value
+        });
     }
 
-    handleClick(history) {
-        history.push(`/search/${this.state.searchValue}`);
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.searchValue || this.state.searchValue) {
+            return;
+        }
+        this.setState({
+            searchValue: nextProps.searchValue || this.state.searchValue
+        });
     }
 
     render() {
-        return (<SearchBarContainer>
+        return <SearchBarContainer>
             <SearchBarLabel>FIND YOUR MOVIE</SearchBarLabel>
             <SearchInput
                 value={this.state.searchValue}
                 onChange={this.handleChange.bind(this)}/>
             <SearchBarControls>
-                <RadioValues
-                    label={searchByLabel}
-                    values={searchByValues}
-                    buttonType='button'
-                    active='title'/>
                 <Route render={({history}) =>
                     <Button
-                        onClick={this.handleClick.bind(this, history)}
+                        onClick={() => this.props.performSearch(this.state.searchValue)}
                         color='red'
                         size='large'
                         title='SEARCH'/>
                 }/>
             </SearchBarControls>
-        </SearchBarContainer>);
+        </SearchBarContainer>;
     }
 }
 

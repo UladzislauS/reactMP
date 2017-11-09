@@ -1,8 +1,9 @@
 import React from 'react';
 import StyledLink from './Link.styles';
 
-const Link = ({color, title}) =>
+const Link = ({onClick, color, title}) =>
     <StyledLink
+        onClick={onClick}
         color={color}>
         {title}
     </StyledLink>;

@@ -4,7 +4,7 @@ import FilmsBy from '../FilmsBy/FilmsBy';
 
 const SearchStatusBar = () =>
     <StatusBar>
-        <FilmsBy director='Quentin Tarantino'/>
+        Recommendations
     </StatusBar>;
 
 export default SearchStatusBar;

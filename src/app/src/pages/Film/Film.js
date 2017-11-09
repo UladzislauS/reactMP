@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FilmHeader from './components/FilmHeader/FilmHeader';
 import FilmStatusBar from './components/FilmStatusBar/FilmStatusBar';
 import {
@@ -7,13 +7,35 @@ import {
 } from '../../common/styles/PageContainer.styles';
 import RecommendedFilms from './components/RecommendedFilms/RecommendedFilms';
 
-const Film = () =>
-    <PageContainer>
-        <FilmHeader/>
-        <FilmStatusBar/>
-        <PageMainArea>
-            <RecommendedFilms/>
-        </PageMainArea>
-    </PageContainer>;
+class Film extends Component {
+    componentDidMount() {
+        const {
+            loadFilm,
+            loadRecommendations,
+            match
+        } = this.props;
+        loadFilm(match.params.id);
+        loadRecommendations(match.params.id);
+    }
+
+    componentDidUpdate() {
+        const {
+            loadFilm,
+            loadRecommendations,
+            match
+        } = this.props;
+        loadFilm(match.params.id);
+        loadRecommendations(match.params.id);
+    }
+
+    render() {
+        return <PageContainer>
+            <FilmHeader film={this.props.film}/>
+            <FilmStatusBar/>
+            <PageMainArea>
+                <RecommendedFilms recommendations={this.props.recommendations}/>
+            </PageMainArea>
+        </PageContainer>;
+    }};
 
 export default Film;

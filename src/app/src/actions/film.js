@@ -1,0 +1,69 @@
+import fetch from 'isomorphic-fetch';
+import {
+    GET_MOVIE_URL,
+    GET_RECOMMENDED_URL
+} from '../vars';
+
+export const REQUEST_FILM = 'REQUEST_FILM';
+export const RECEIVE_FILM = 'RECEIVE_FILM';
+export const REQUEST_RECOMMENDATIONS = 'REQUEST_RECOMMENDATIONS';
+export const RECEIVE_RECOMMENDATIONS = 'RECEIVE_RECOMMENDATIONS';
+
+export function requestFilm(id) {
+    return {
+        type: REQUEST_FILM,
+        id,
+        loading: true,
+        film: {}
+    }
+}
+
+export function receiveFilm(id, film) {
+    return {
+        type: RECEIVE_FILM,
+        id,
+        film,
+        loading: false
+    }
+}
+export function requestRecommendations(recId) {
+    return {
+        type: REQUEST_RECOMMENDATIONS,
+        recId,
+        loadingRec: true,
+        recommendations: []
+    }
+}
+
+export function receiveRecommendations(recId, recommendations) {
+    return {
+        type: RECEIVE_RECOMMENDATIONS,
+        recId,
+        recommendations,
+        loadingRec: false
+    }
+}
+
+export function loadFilm(id = '*') {
+    return (dispatch, getState) => {
+        if (getState().film.id === id) {
+            return;
+        }
+        dispatch( requestFilm(id) );
+        fetch( GET_MOVIE_URL(id) )
+            .then( response => response.json() )
+            .then( response => dispatch( receiveFilm(id, response) ) );
+    };
+}
+
+export function loadRecommendations(id = '*') {
+    return (dispatch, getState) => {
+        if (getState().film.recId === id) {
+            return;
+        }
+        dispatch( requestRecommendations(id) );
+        fetch( GET_RECOMMENDED_URL(id) )
+            .then( response => response.json() )
+            .then( response => dispatch( receiveRecommendations(id, response.results) ) );
+    };
+}

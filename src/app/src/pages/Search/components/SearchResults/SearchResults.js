@@ -1,8 +1,14 @@
 import React from 'react';
-import FilmTiles from "../../../../common/components/FilmTiles/FilmTiles";
-import mockData from  './mockTiles'
+import FilmTiles from '../../../../common/components/FilmTiles/FilmTiles';
 
-const SearchResults = (params) =>
-    <FilmTiles list={mockData}/>;
+const SearchResults = ({
+   page,
+   totalPages,
+   films
+}) =>
+    <FilmTiles
+        page={page}
+        totalPages={totalPages}
+        films={films}/>;
 
 export default SearchResults;

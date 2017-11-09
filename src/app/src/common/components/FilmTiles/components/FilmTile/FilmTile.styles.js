@@ -5,13 +5,14 @@ const Tile = styled(Link)`
   text-decoration: none;
   color: #494949;
   width: 200px;
-  margin: 10px;
+  margin: 10px auto;
 `;
 
 const TileImage = styled.div`
   width: 200px;
   height: 285px;
   background-image: url(${(props) => props.url});
+  background-color: #a9a9a9;
   background-size: cover;
 `;
 

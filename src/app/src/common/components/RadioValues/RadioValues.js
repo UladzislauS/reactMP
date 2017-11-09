@@ -5,16 +5,16 @@ import {
     RadioValuesLabel
 } from './RadioValues.styles';
 
-const RadioValues = ({label, values, active, buttonType}) =>
+const RadioValues = ({label, values, active, buttonType, onClick}) =>
     <RadioValuesContainer>
         <RadioValuesLabel>{label}</RadioValuesLabel>
         {values.map((value, key) =>
             <RadioValue
                 key={key}
                 label={value.label}
-                value={value.value}
                 isChecked={active === value.value}
-                type={buttonType}/>
+                type={buttonType}
+                onClick={() => onClick(value.value)}/>
         )}
     </RadioValuesContainer>;
 
