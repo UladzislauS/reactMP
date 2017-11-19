@@ -1,2 +1,5 @@
 **/node_modules
 .idea
+**/.babel-cache/*
+**/src/server-es5.js
+**/src/static/js/*
