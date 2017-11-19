@@ -2,7 +2,7 @@
 
 React Mentoring Program tasks.
 
-#Installation and starting
+# Installation and starting
 
 ```sh
 $ npm i
