@@ -3,18 +3,18 @@ import nodeExternals from 'webpack-node-externals';
 
 const client = {
     devtool: 'source-map',
-    entry: './src/app/src/indexTemplate.js',
+    entry: './src/app/src/index.js',
     output: {
         path: path.resolve('src/static/js'),
         filename: 'index.bundle.js'
     },
     module: {
-        loaders: [
+        rules: [
             {
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-                query: {
-                    presets: [['es2015'], ['react']]
+                test: /.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: 'cacheDirectory=.babel_cache',
                 }
             }
         ]
@@ -30,7 +30,7 @@ const server = {
         modulesFromFile: true,
     })],
     entry: {
-        js: './src/server/indexTemplate.js',
+        js: './src/server/index.js',
     },
     output: {
         path: path.join(__dirname, 'src'),
@@ -44,10 +44,10 @@ const server = {
                 use: {
                     loader: 'babel-loader',
                     options: 'cacheDirectory=.babel_cache',
-                },
-            },
-        ],
-    },
+                }
+            }
+        ]
+    }
 };
 
 export default [client, server];

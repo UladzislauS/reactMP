@@ -15,9 +15,7 @@ const store = createStore( netflix, applyMiddleware(thunkMiddleware) );
 render(
     <Provider store={store}>
         <BrowserRouter>
-            <div>
-                <App/>
-            </div>
+            <App/>
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')

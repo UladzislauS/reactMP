@@ -19,7 +19,6 @@ app.get('*', (req, res) => {
     let status = 200;
     const context = {};
     const store = createStore( netflix, applyMiddleware(thunkMiddleware) );
-    const finalState = store.getState();
     const styleSheet = new ServerStyleSheet();
 
     const markup = renderToString(
@@ -29,8 +28,10 @@ app.get('*', (req, res) => {
                     <App />
                 </Router>
             </Provider>
-        </StyleSheetManager>,
+        </StyleSheetManager>
     );
+
+    const styleTags = styleSheet.getStyleTags();
 
     if (context.url) {
         return res.redirect(302, context.url);
@@ -42,7 +43,7 @@ app.get('*', (req, res) => {
 
     return res
         .status(status)
-        .send(template('ReactMP', markup, finalState ));
+        .send( template('ReactMP', markup, styleTags) );
 });
 
 export default app;
