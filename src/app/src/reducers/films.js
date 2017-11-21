@@ -9,7 +9,8 @@ export const films = (
         films: [],
         page: 0,
         totalPages: 0,
-        results: 0
+        totalResults: 0,
+        query: ''
     },
     action
 ) => {

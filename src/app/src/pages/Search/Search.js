@@ -13,11 +13,6 @@ export default class Search extends Component {
         loadFilms(match.params.query);
     }
 
-    componentDidUpdate() {
-        const { loadFilms, match } = this.props;
-        loadFilms(match.params.query);
-    }
-
     render() {
         return <PageContainer>
             <SearchHeader

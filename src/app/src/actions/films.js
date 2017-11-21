@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 import { SEARCH_URL } from '../vars';
 
 export const REQUEST_FILMS = 'REQUEST_FILMS';
@@ -26,13 +26,10 @@ export function receiveFilms(response, query) {
     }
 }
 
-export function loadFilms(query = '*') {
-    return (dispatch, getState) => {
-        if (getState().films.query === query) {
-            return;
-        }
+export function loadFilms(query) {
+    return dispatch => {
         dispatch( requestFilms(query) );
-        fetch(SEARCH_URL(query))
+        return fetch(SEARCH_URL(query))
             .then( response => response.json() )
             .then( response => dispatch( receiveFilms(response, query) ) );
     };

@@ -18,16 +18,6 @@ class Film extends Component {
         loadRecommendations(match.params.id);
     }
 
-    componentDidUpdate() {
-        const {
-            loadFilm,
-            loadRecommendations,
-            match
-        } = this.props;
-        loadFilm(match.params.id);
-        loadRecommendations(match.params.id);
-    }
-
     render() {
         return <PageContainer>
             <FilmHeader film={this.props.film}/>
@@ -36,6 +26,6 @@ class Film extends Component {
                 <RecommendedFilms recommendations={this.props.recommendations}/>
             </PageMainArea>
         </PageContainer>;
-    }};
+    }}
 
 export default Film;

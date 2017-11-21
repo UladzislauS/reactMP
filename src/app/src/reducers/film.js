@@ -26,7 +26,7 @@ export const film = (
             return Object.assign({}, state, {
                 recId: action.recId,
                 recommendations: action.recommendations,
-                loadingRec: !action.loadingRec
+                loadingRec: action.loadingRec
             });
         default:
             return state;

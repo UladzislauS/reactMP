@@ -4,7 +4,7 @@ import {
     AppContainer,
     Container
 } from './common/styles/Container.styles';
-import {Route} from 'react-router';
+import { Route } from 'react-router';
 import NoFilmsFound from './pages/Search/NoFilmsFoundContainer';
 import Film from './pages/Film/FilmContainer';
 import Search from './pages/Search/SearchContainer';

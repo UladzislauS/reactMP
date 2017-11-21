@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 import {
     GET_MOVIE_URL,
     GET_RECOMMENDED_URL
@@ -44,25 +44,19 @@ export function receiveRecommendations(recId, recommendations) {
     }
 }
 
-export function loadFilm(id = '*') {
-    return (dispatch, getState) => {
-        if (getState().film.id === id) {
-            return;
-        }
+export function loadFilm(id) {
+    return (dispatch) => {
         dispatch( requestFilm(id) );
-        fetch( GET_MOVIE_URL(id) )
+        return fetch( GET_MOVIE_URL(id) )
             .then( response => response.json() )
             .then( response => dispatch( receiveFilm(id, response) ) );
     };
 }
 
-export function loadRecommendations(id = '*') {
-    return (dispatch, getState) => {
-        if (getState().film.recId === id) {
-            return;
-        }
+export function loadRecommendations(id) {
+    return (dispatch) => {
         dispatch( requestRecommendations(id) );
-        fetch( GET_RECOMMENDED_URL(id) )
+        return fetch( GET_RECOMMENDED_URL(id) )
             .then( response => response.json() )
             .then( response => dispatch( receiveRecommendations(id, response.results) ) );
     };
